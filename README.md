@@ -4,6 +4,6 @@ dotfiles
 install
 -------
 
-    $ git clone git@github.com:davidyorr/dotfiles.git ~/.dotfiles
+    $ git clone https://github.com/davidyorr/dotfiles.git
     $ cd ~/.dotfiles
     $ sh bootstrap.sh
