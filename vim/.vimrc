@@ -10,6 +10,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+Plugin 'ekalinin/Dockerfile.vim'
 Bundle 'digitaltoad/vim-jade'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'itchyny/lightline.vim'
