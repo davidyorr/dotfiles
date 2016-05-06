@@ -83,9 +83,15 @@ set fileformats=unix,dos
 set title
 
 set backup
-silent !mkdir ~/.vim/.undo > /dev/null 2>&1
-silent !mkdir ~/.vim/.backup > /dev/null 2>&1
-silent !mkdir ~/.vim/.swp > /dev/null 2>&1
+if !isdirectory("~/.vim/.undo")
+  call mkdir("~/.vim/.undo", "p", 0700)
+endif
+if !isdirectory("~/.vim/.backup")
+  call mkdir("~/.vim/.backup", "p", 0700)
+endif
+if !isdirectory("~/.vim/.swp")
+  call mkdir("~/.vim/.swp", "p", 0700)
+endif
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
