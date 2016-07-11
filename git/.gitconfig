@@ -3,3 +3,5 @@
 	email = davidyorr@gmail.com
 [core]
 	editor = vim
+[diff]
+	compactionHeuristic = true
