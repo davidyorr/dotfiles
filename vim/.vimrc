@@ -85,18 +85,18 @@ set fileformats=unix,dos
 set title
 
 set backup
-if !isdirectory("~/.vim/.undo")
-  call mkdir("~/.vim/.undo", "p", 0700)
+if !isdirectory($HOME . '/.vim/.undo')
+  call mkdir($HOME . '/.vim/.undo', 'p', 0700)
 endif
-if !isdirectory("~/.vim/.backup")
-  call mkdir("~/.vim/.backup", "p", 0700)
+if !isdirectory($HOME . '/.vim/.backup')
+  call mkdir($HOME . '/.vim/.backup', 'p', 0700)
 endif
-if !isdirectory("~/.vim/.swp")
-  call mkdir("~/.vim/.swp", "p", 0700)
+if !isdirectory($HOME . '/.vim/.swp')
+  call mkdir($HOME . '/.vim/.swp', 'p', 0700)
 endif
-set undodir=~/.vim/.undo//
-set backupdir=~/.vim/.backup//
-set directory=~/.vim/.swp//
+set undodir=$HOME/.vim/.undo//
+set backupdir=$HOME/.vim/.backup//
+set directory=$HOME/.vim/.swp//
 
 " filetypes
 au BufRead,BufNewFile *.rs set filetype=rust
