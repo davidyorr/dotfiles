@@ -32,12 +32,12 @@ filetype plugin indent on    " required
 :imap JK <Esc>
 
 function! Normalstyle()
-  set tabstop=4
+  set tabstop=2
   set expandtab
   set autoindent
   set smartindent
-  set shiftwidth=4
-  set softtabstop=4
+  set shiftwidth=2
+  set softtabstop=2
 endfunction
 
 function! Kernelstyle()
