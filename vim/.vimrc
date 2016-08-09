@@ -59,6 +59,12 @@ set splitbelow
 map <C-L> 20zl
 map <C-H> 20zh
 
+" keep lines above/below cursor when scrolling
+set scrolloff=3
+
+set relativenumber
+set number
+
 " extend the color scheme's background color to the whole terminal screen
 " http://serverfault.com/a/485732
 set t_ut=
@@ -72,12 +78,6 @@ colorscheme desert
 if filereadable( expand("~/.vim/bundle/vim-colorschemes/colors/xoria256.vim") )
   colorscheme xoria256
 endif
-
-" keep lines above/below cursor when scrolling
-set scrolloff=3
-
-set relativenumber
-set number
 
 set encoding=utf-8
 set fileformats=unix,dos
