@@ -31,19 +31,21 @@ filetype plugin indent on    " required
 :imap jk <Esc>
 :imap JK <Esc>
 
-fu! Normalstyle()
-set tabstop=4
-set expandtab
-set autoindent
-set si
-set shiftwidth=4
-endf
+function! Normalstyle()
+  set tabstop=4
+  set expandtab
+  set autoindent
+  set smartindent
+  set shiftwidth=4
+  set softtabstop=4
+endfunction
 
-fu! Kernelstyle()
-set sw=8
-set ts=8
-set noexpandtab
-endf
+function! Kernelstyle()
+  set shiftwidth=8
+  set tabstop=8
+  set noexpandtab
+  set softtabstop=0
+endfunction
 
 set ruler
 set nowrap
