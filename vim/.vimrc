@@ -64,13 +64,13 @@ map <C-H> 20zh
 set t_ut=
 
 if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
+  set t_Co=256
 endif
 
 syntax on
 colorscheme desert
 if filereadable( expand("~/.vim/bundle/vim-colorschemes/colors/xoria256.vim") )
-    colorscheme xoria256
+  colorscheme xoria256
 endif
 
 " keep lines above/below cursor when scrolling
