@@ -100,6 +100,7 @@ set directory=$HOME/.vim/.swp//
 
 " filetypes
 au BufRead,BufNewFile *.rs set filetype=rust
+au BufRead,BufNewFile *.gradle set filetype=groovy
 
 " trim trailing whitespace
 nnoremap <Leader>rtw :%s/\s\+$//e<CR>
