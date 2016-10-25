@@ -22,6 +22,11 @@ call plug#end()
 :imap jk <Esc>
 :imap JK <Esc>
 
+" disable mouse
+set mouse=
+
+set laststatus=2 " needed for lightline
+
 function! Normalstyle()
   set tabstop=2
   set expandtab
@@ -55,6 +60,11 @@ set scrolloff=3
 
 set relativenumber
 set number
+" highlight current line
+set cursorline
+
+" MatchTagAlways for different filetypes
+let g:mta_filetypes = { 'html': 1, 'xhtml': 1, 'xml': 1, 'jinja': 1, 'jsx': 1 }
 
 " extend the color scheme's background color to the whole terminal screen
 " http://serverfault.com/a/485732
@@ -64,11 +74,14 @@ if $COLORTERM == 'gnome-terminal'
   set t_Co=256
 endif
 
-syntax on
+" color scheme
+syntax enable
+set background=dark
 colorscheme desert
-if filereadable( expand("~/.vim/bundle/vim-colorschemes/colors/xoria256.vim") )
-  colorscheme xoria256
-endif
+let g:gruvbox_bold=0
+let g:gruvbox_italic=0
+let g:gruvbox_underline=0
+silent! colorscheme gruvbox
 
 set encoding=utf-8
 set fileformats=unix,dos
@@ -98,5 +111,12 @@ nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 
 " detect file change, offer reload
 au FocusGained,BufEnter,CursorHold * checktime
+
+" fzf
+let $FZF_DEFAULT_COMMAND= 'ag -g ""'
+nnoremap <silent> <C-p> :FZF -m<CR>
+
+" nerdtree
+nnoremap <F2> :NERDTreeToggle<CR>
 
 call Normalstyle()
