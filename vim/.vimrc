@@ -1,30 +1,21 @@
-" vundle (plugin manager) - https://github.com/gmarik/Vundle.vim
+if has('nvim')
+	call plug#begin('~/.config/nvim/plugged')
+else
+	call plug#begin('~/.vim/plugged')
+endif
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'itchyny/lightline.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'morhetz/gruvbox'
+Plug 'Valloric/MatchTagAlways'
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-Plugin 'ekalinin/Dockerfile.vim'
-Bundle 'digitaltoad/vim-jade'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'itchyny/lightline.vim'
-set laststatus=2 " needed for lightline
-Bundle 'kien/ctrlp.vim'
-let g:ctrlp_custom_ignore = {
-  \ 'dir': 'node_modules\|\v[\/]\.(git)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ }
-let g:ctrlp_show_hidden = 1
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
 
 " -------------------------------------------------------
 
