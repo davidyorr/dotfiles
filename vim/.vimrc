@@ -86,6 +86,10 @@ silent! colorscheme gruvbox
 set encoding=utf-8
 set fileformats=unix,dos
 
+" don't force files to end with a newline character
+set noendofline
+set nofixendofline
+
 set title
 
 set backup
