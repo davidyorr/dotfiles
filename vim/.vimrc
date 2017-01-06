@@ -66,6 +66,9 @@ set cursorline
 " MatchTagAlways for different filetypes
 let g:mta_filetypes = { 'html': 1, 'xhtml': 1, 'xml': 1, 'jinja': 1, 'javascript.jsx': 1 }
 
+" flowtype syntax highlighting
+let g:javascript_plugin_flow = 1
+
 " extend the color scheme's background color to the whole terminal screen
 " http://serverfault.com/a/485732
 set t_ut=
