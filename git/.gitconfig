@@ -6,3 +6,5 @@
 [diff]
 	compactionHeuristic = true
 	wsErrorHighlight = new
+[stash]
+	showPatch = true
