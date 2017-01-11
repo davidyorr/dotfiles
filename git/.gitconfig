@@ -3,6 +3,7 @@
 	email = davidyorr@gmail.com
 [core]
 	editor = vim
+	pager = less -S
 [diff]
 	compactionHeuristic = true
 	wsErrorHighlight = new
