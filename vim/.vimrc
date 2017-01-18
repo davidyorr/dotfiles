@@ -120,7 +120,7 @@ nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 au FocusGained,BufEnter,CursorHold * checktime
 
 " fzf
-let $FZF_DEFAULT_COMMAND= 'ag -g ""'
+let $FZF_DEFAULT_COMMAND= 'ag -g "" --hidden'
 nnoremap <silent> <C-p> :FZF -m<CR>
 
 " nerdtree
