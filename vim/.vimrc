@@ -126,4 +126,12 @@ nnoremap <silent> <C-p> :FZF -m<CR>
 " nerdtree
 nnoremap <F2> :NERDTreeToggle<CR>
 
+" set path to the root of the git repository or the current directory
+let git_root_dir=systemlist('git rev-parse --show-toplevel')[0]
+if !v:shell_error
+	let &path=git_root_dir . '/**'
+else
+	set path=$PWD/**
+endif
+
 call Normalstyle()
