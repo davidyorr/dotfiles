@@ -127,7 +127,7 @@ nnoremap <silent> <C-p> :FZF -m<CR>
 nnoremap <F2> :NERDTreeToggle<CR>
 
 " set path to the root of the git repository or the current directory
-let git_root_dir=systemlist('git rev-parse --show-toplevel')[0]
+let git_root_dir = get(systemlist('git rev-parse --show-toplevel'), 0, $PWD)
 if !v:shell_error
 	let &path=git_root_dir . '/**'
 else
