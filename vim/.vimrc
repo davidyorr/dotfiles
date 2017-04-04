@@ -95,7 +95,8 @@ set nofixendofline
 
 set title
 
-set backup
+set backupcopy=yes
+" set backup
 if !isdirectory($HOME . '/.vim/.undo')
   call mkdir($HOME . '/.vim/.undo', 'p', 0700)
 endif
