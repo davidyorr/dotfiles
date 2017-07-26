@@ -136,3 +136,5 @@ else
 endif
 
 call Normalstyle()
+
+source $HOME/.dotfiles/.machine/.vimrc
