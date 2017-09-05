@@ -15,6 +15,10 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'morhetz/gruvbox'
 Plug 'Valloric/MatchTagAlways'
 
+if filereadable(expand('$HOME/.dotfiles/.machine/.vimrc.plugins'))
+	source $HOME/.dotfiles/.machine/.vimrc.plugins
+endif
+
 call plug#end()
 
 " -------------------------------------------------------
@@ -137,4 +141,6 @@ endif
 
 call Normalstyle()
 
-source $HOME/.dotfiles/.machine/.vimrc
+if filereadable(expand('$HOME/.dotfiles/.machine/.vimrc'))
+	source $HOME/.dotfiles/.machine/.vimrc
+endif
