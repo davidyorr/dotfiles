@@ -5,7 +5,8 @@ else
 endif
 
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'flazz/vim-colorschemes'
+Plug 'vim-scripts/xoria256.vim'
+Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -82,13 +83,14 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 " color scheme
-syntax enable
-set background=dark
-colorscheme desert
-let g:gruvbox_bold=0
-let g:gruvbox_italic=0
-let g:gruvbox_underline=0
-silent! colorscheme gruvbox
+if has('nvim')
+	let g:one_allow_italics = 0
+	silent! colorscheme one
+	" set background has to be called after setting colorscheme
+	set background=dark
+else
+	silent! colorscheme xoria256
+endif
 
 set encoding=utf-8
 set fileformats=unix,dos
