@@ -142,6 +142,11 @@ else
 	set path=$PWD/**
 endif
 
+" fix cursor in neovim
+if has('nvim')
+	set guicursor=
+endif
+
 call Normalstyle()
 
 if filereadable(expand('$HOME/.dotfiles/.machine/.vimrc'))
