@@ -6,14 +6,13 @@ endif
 
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'vim-scripts/xoria256.vim'
-Plug 'rakr/vim-one'
+Plug 'rakr/vim-two-firewatch'
 Plug 'itchyny/lightline.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'morhetz/gruvbox'
 Plug 'Valloric/MatchTagAlways'
 
 if filereadable(expand('$HOME/.dotfiles/.machine/.vimrc.plugins'))
@@ -84,10 +83,12 @@ endif
 
 " color scheme
 if has('nvim')
-	let g:one_allow_italics = 0
-	silent! colorscheme one
-	" set background has to be called after setting colorscheme
 	set background=dark
+	let g:two_firewatch_italics = 1
+	silent! colorscheme two-firewatch
+	let g:lightline = {
+		\ 'colorscheme': 'twofirewatch',
+		\ }
 else
 	silent! colorscheme xoria256
 endif
