@@ -16,7 +16,7 @@ export PATH="/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # npm
 export NODE_PATH="$HOME/.npm-global/lib/node_modules"
-export PATH="$HOME/.npm-global:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
 
 # go stuff
 export PATH="/usr/local/go/bin:$PATH"
