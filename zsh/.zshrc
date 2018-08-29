@@ -33,6 +33,8 @@ fi
 # neovim
 alias v='nvim'
 
+alias :q='exit'
+
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
