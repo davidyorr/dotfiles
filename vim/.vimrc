@@ -147,6 +147,9 @@ if has('nvim')
 	set guicursor=
 endif
 
+" paste buffer into current word
+nnoremap <C-j> ciw<C-R>0<ESC>
+
 call Normalstyle()
 
 if filereadable(expand('$HOME/.dotfiles/.machine/.vimrc'))
