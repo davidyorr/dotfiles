@@ -14,6 +14,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Valloric/MatchTagAlways'
+Plug 'chriskempson/base16-vim'
+Plug 'arcticicestudio/nord-vim'
 
 if filereadable(expand('$HOME/.dotfiles/.machine/.vimrc.plugins'))
 	source $HOME/.dotfiles/.machine/.vimrc.plugins
@@ -83,12 +85,7 @@ endif
 
 " color scheme
 if has('nvim')
-	set background=dark
-	let g:two_firewatch_italics = 1
-	silent! colorscheme two-firewatch
-	let g:lightline = {
-		\ 'colorscheme': 'twofirewatch',
-		\ }
+  colorscheme base16-gruvbox-light-medium
 else
 	silent! colorscheme xoria256
 endif
