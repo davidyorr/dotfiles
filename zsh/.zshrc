@@ -18,6 +18,10 @@ export PATH="/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export NODE_PATH="$HOME/.npm-global/lib/node_modules"
 export PATH="$HOME/.npm-global/bin:$PATH"
 
+# yarn
+export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 # go stuff
 export PATH="/usr/local/go/bin:$PATH"
 export GO15VENDOREXPERIMENT=1
