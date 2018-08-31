@@ -16,6 +16,9 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Valloric/MatchTagAlways'
 Plug 'chriskempson/base16-vim'
 Plug 'arcticicestudio/nord-vim'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'suan/vim-instant-markdown'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 if filereadable(expand('$HOME/.dotfiles/.machine/.vimrc.plugins'))
 	source $HOME/.dotfiles/.machine/.vimrc.plugins
