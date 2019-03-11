@@ -1,0 +1,38 @@
+---
+
+- hosts: 127.0.0.1
+  connection: local
+
+  vars:
+    local_bin: "$HOME/.local/bin"
+
+  pre_tasks:
+    - name: get the username
+      local_action: command whoami
+      register: username
+
+  post_tasks:
+
+    - name: create directories
+      file:
+        path: "{{ local_bin }}"
+        state: directory
+
+    # Z shell
+    - name: install
+      apt: name=zsh state=present
+      become: yes
+
+    - name: make default shell
+      user: name={{ username.stdout }} shell=/usr/bin/zsh
+      become: yes
+
+    # NeoVim
+    - name: download
+      get_url:
+        url: https://github.com/neovim/neovim/releases/download/v0.3.3/nvim.appimage
+        dest: "{{ local_bin }}/nvim"
+
+    - name: make executable
+      file: dest="{{ local_bin }}/nvim" mode=u+x
+
