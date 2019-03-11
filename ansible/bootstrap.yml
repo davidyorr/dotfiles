@@ -2,14 +2,13 @@
 
 - hosts: 127.0.0.1
   connection: local
+  remote_user: "{{ lookup('env', 'USER') }}"
 
   vars:
-    local_bin: "$HOME/.local/bin"
-
-  pre_tasks:
-    - name: get the username
-      local_action: command whoami
-      register: username
+    username: "{{ ansible_facts['user_id'] }}"
+    cwd: "{{ lookup('env', 'PWD') }}"
+    home: "{{ ansible_facts['user_dir'] }}"
+    local_bin: "{{ home }}/.local/bin"
 
   post_tasks:
 
@@ -18,13 +17,38 @@
         path: "{{ local_bin }}"
         state: directory
 
+    # symlink dotfiles
+    - name: git
+      file:
+        src: "{{ cwd }}/git/.gitconfig"
+        dest: "{{ home }}/.gitconfig"
+        state: link
+
+    - name: tmux
+      file:
+        src: "{{ cwd }}/tmux/.tmux.conf"
+        dest: "{{ home }}/.tmux.conf"
+        state: link
+
+    - name: vim
+      file:
+        src: "{{ cwd }}/vim/.vimrc"
+        dest: "{{ home }}/.vimrc"
+        state: link
+
+    - name: zsh
+      file:
+        src: "{{ cwd }}/zsh/.zshrc"
+        dest: "{{ home }}/.zshrc"
+        state: link
+
     # Z shell
     - name: install
       apt: name=zsh state=present
       become: yes
 
     - name: make default shell
-      user: name={{ username.stdout }} shell=/usr/bin/zsh
+      user: name={{ username }} shell=/usr/bin/zsh
       become: yes
 
     # NeoVim
