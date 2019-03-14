@@ -12,6 +12,13 @@
 
   post_tasks:
 
+    - name: set XDG_CONFIG_HOME
+      tags:
+        - test
+      lineinfile:
+        path: "{{ home }}/.profile"
+        line: export XDG_CONFIG_HOME="$HOME/.config"
+
     - name: create directories
       file:
         path: "{{ local_bin }}"
