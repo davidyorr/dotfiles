@@ -27,7 +27,7 @@
         - "{{ xdg_config_home }}"
 
     # symlink dotfiles
-    - name: git
+    - name: symlink git config
       file:
         src: "{{ cwd }}/git/.gitconfig"
         dest: "{{ home }}/.gitconfig"
@@ -35,7 +35,7 @@
       tags:
         - dotfiles
 
-    - name: tmux
+    - name: symlink tmux config
       file:
         src: "{{ cwd }}/tmux/.tmux.conf"
         dest: "{{ home }}/.tmux.conf"
@@ -43,7 +43,7 @@
       tags:
         - dotfiles
 
-    - name: vim
+    - name: symlink vim config
       file:
         src: "{{ cwd }}/vim/.vimrc"
         dest: "{{ home }}/.vimrc"
@@ -57,7 +57,7 @@
         state: directory
       tags:
         - dotfiles
-    - name: neovim
+    - name: symlink neovim config
       file:
         src: "{{ cwd }}/neovim/init.vim"
         dest: "{{ xdg_config_home }}/nvim/init.vim"
@@ -65,7 +65,7 @@
       tags:
         - dotfiles
 
-    - name: zsh
+    - name: symlink zsh config
       file:
         src: "{{ cwd }}/zsh/.zshrc"
         dest: "{{ home }}/.zshrc"
@@ -74,20 +74,30 @@
         - dotfiles
 
     # Z shell
-    - name: install
+    - name: install zsh
       apt: name=zsh state=present
       become: yes
 
-    - name: make default shell
+    - name: make zsh default shell
       user: name={{ username }} shell=/usr/bin/zsh
       become: yes
 
     # NeoVim
-    - name: download
+    - name: download neovim
       get_url:
         url: https://github.com/neovim/neovim/releases/download/v0.3.3/nvim.appimage
         dest: "{{ local_bin }}/nvim"
 
-    - name: make executable
+    - name: make neovim executable
       file: dest="{{ local_bin }}/nvim" mode=u+x
+
+    # vim-plug
+    - name: ensure neovim autoload directory exists
+      file:
+        path: "{{ home }}/.local/share/nvim/site/autoload"
+        state: directory
+    - name: download vim-plug
+      get_url:
+        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        dest: "{{ home }}/.local/share/nvim/site/autoload/plug.vim"
 
