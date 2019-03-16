@@ -10,4 +10,4 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-- script: ./bootstrap-ubuntu.sh
+- script: sudo ./bootstrap-ubuntu.sh
