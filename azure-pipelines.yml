@@ -10,4 +10,12 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-- script: sudo ./bootstrap-ubuntu.sh
+# install ansible
+- script: sudo ./install-ansible.sh
+
+# ansible
+- task: Ansible
+  displayName: Run playbook
+  inputs: {
+    ansibleInterface: agentMachine
+  }
