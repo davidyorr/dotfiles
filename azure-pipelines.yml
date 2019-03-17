@@ -17,5 +17,6 @@ steps:
 - task: Ansible@0
   displayName: Run playbook
   inputs: {
-    ansibleInterface: agentMachine
+    ansibleInterface: agentMachine,
+    playbookPathOnAgentMachine: 'ansible/bootstrap.yml'
   }
