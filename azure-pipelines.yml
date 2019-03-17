@@ -18,5 +18,7 @@ steps:
   displayName: Run playbook
   inputs: {
     ansibleInterface: agentMachine,
-    playbookPathOnAgentMachine: 'ansible/bootstrap.yml'
+    playbookPathOnAgentMachine: 'ansible/bootstrap.yml',
+    inventoriesAgentMachine: 'file',
+    inventoryFileOnAgentMachine: 'ansible/inventory'
   }
