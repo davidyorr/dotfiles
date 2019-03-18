@@ -88,7 +88,7 @@ endif
 
 " color scheme
 if has('nvim')
-  colorscheme base16-gruvbox-light-medium
+  silent! colorscheme base16-gruvbox-light-medium
 else
 	silent! colorscheme xoria256
 endif
