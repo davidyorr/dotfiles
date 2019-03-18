@@ -102,6 +102,8 @@
         name: "{{packages }}"
       vars:
         packages:
+        - python-setuptools
+        - python3-setuptools
         - python3-pip
         - python-pip
       become: yes
