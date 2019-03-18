@@ -75,11 +75,15 @@
 
     # Z shell
     - name: install zsh
-      apt: name=zsh state=present
+      apt:
+        name: zsh
+        state: present
       become: yes
 
     - name: make zsh default shell
-      user: name={{ username }} shell=/usr/bin/zsh
+      user:
+        name: "{{ username }}"
+        shell: /usr/bin/zsh
       become: yes
 
     # NeoVim
@@ -89,7 +93,30 @@
         dest: "{{ local_bin }}/nvim"
 
     - name: make neovim executable
-      file: dest="{{ local_bin }}/nvim" mode=u+x
+      file:
+        dest: "{{ local_bin }}/nvim"
+        mode: u+x
+
+    - name: install pip
+      apt:
+        name: "{{packages }}"
+      vars:
+        packages:
+        - python3-pip
+        - python-pip
+      become: yes
+
+    - name: install pynvim for python 2
+      pip:
+        name: pynvim
+        executable: pip
+        extra_args: --user
+
+    - name: install pynvim for python 3
+      pip:
+        name: pynvim
+        executable: pip3
+        extra_args: --user
 
     # vim-plug
     - name: ensure neovim autoload directory exists
