@@ -80,11 +80,24 @@
         state: present
       become: yes
 
+    - name: get zsh path
+      shell: which zsh
+      register: zsh_path
+      changed_when: no
+
     - name: make zsh default shell
       user:
         name: "{{ username }}"
-        shell: /usr/bin/zsh
+        shell: "{{ zsh_path.stdout }}"
       become: yes
+
+    - name: get default shell
+      shell: echo $SHELL
+      register: default_shell
+      changed_when: no
+
+    - debug:
+        msg: "{{ default_shell }}"
 
     # NeoVim
     - name: download neovim
