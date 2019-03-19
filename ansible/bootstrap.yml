@@ -138,5 +138,6 @@
 
     - name: run PlugInstall
       shell: nvim -E +':silent! PlugInstall' +qa
+      args:
         chdir: "{{ local_bin }}"
 
