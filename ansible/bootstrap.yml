@@ -91,17 +91,6 @@
         shell: "{{ zsh_path.stdout }}"
       become: yes
 
-    - name: switch to zsh
-      shell: exec zsh && source "{{ home }}/.zshrc"
-
-    - name: get path
-      shell: echo $PATH
-      register: path
-      changed_when: no
-
-    - debug:
-        msg: "{{ path }}"
-
     # NeoVim
     - name: download neovim
       get_url:
@@ -149,4 +138,5 @@
 
     - name: run PlugInstall
       shell: nvim -E +':silent! PlugInstall' +qa
+        chdir: "{{ local_bin }}"
 
