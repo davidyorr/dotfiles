@@ -91,13 +91,16 @@
         shell: "{{ zsh_path.stdout }}"
       become: yes
 
-    - name: get default shell
-      shell: echo $SHELL
-      register: default_shell
+    - name: switch to zsh
+      shell: exec zsh && source "{{ home }}/.zshrc"
+
+    - name: get path
+      shell: echo $PATH
+      register: path
       changed_when: no
 
     - debug:
-        msg: "{{ default_shell }}"
+        msg: "{{ path }}"
 
     # NeoVim
     - name: download neovim
