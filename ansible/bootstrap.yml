@@ -146,7 +146,12 @@
         msg: "{{ nvim_ls }}"
 
     - name: run PlugInstall
-      shell: nvim -E +':silent! PlugInstall' +qa
+      #shell: nvim -E +':silent! PlugInstall' +qa
+      shell: ./nvim --version
+      register: nvim_version
       args:
         chdir: "{{ local_bin }}"
+
+    - debug:
+        msg: "{{ nvim_version }}"
 
