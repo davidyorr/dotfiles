@@ -6,11 +6,12 @@
 
   post_tasks:
 
-    - name: ls
-      command: ls -l
-      register: ls_output
+    - name: test neovim plugins
+      shell: "nvim -E +':source $HOME/.config/nvim/init.vim' +'redir>>/dev/stdout | :source {{ playbook_dir }}/../vim/test-plugins.vim | redir END' -scq!"
+      register: nvim_test_result
 
-    - name: test
-      debug:
-        msg: "{{ ls_output.stdout }}"
+    - assert:
+        that:
+          - "'Plugins not installed' not in nvim_test_result.stdout"
+        fail_msg: " {{ nvim_test_result.stdout }} "
 
