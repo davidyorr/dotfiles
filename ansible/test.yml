@@ -10,7 +10,7 @@
   post_tasks:
 
     - name: test neovim plugins
-      shell: "nvim -E +':source $HOME/.config/nvim/init.vim' +'redir>>/dev/stdout | :source {{ playbook_dir }}/../vim/test-plugins.vim | redir END' -scq!"
+      shell: "./nvim -E +':source $HOME/.config/nvim/init.vim' +'redir>>/dev/stdout | :source {{ playbook_dir }}/../vim/test-plugins.vim | redir END' -scq!"
       register: nvim_test_result
       args:
         chdir: "{{ local_bin }}"
