@@ -7,6 +7,11 @@
   vars_files:
     - vars/defaults.yml
 
+  # remove after the warning is removed
+  module_defaults:
+    apt:
+      force_apt_get: yes
+
   post_tasks:
 
     - name: set XDG paths
