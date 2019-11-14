@@ -20,6 +20,7 @@
         state: directory
       with_items:
         - "{{ local_bin }}"
+        - "{{ local_src }}"
         - "{{ xdg_config_home }}"
 
     # symlink dotfiles
@@ -86,6 +87,11 @@
         name: "{{ username }}"
         shell: "{{ zsh_path.stdout }}"
       become: yes
+
+    - name: download zplugin
+      git:
+        repo: https://github.com/zdharma/zplugin.git
+        dest: "{{ local_src }}/zplugin/bin"
 
     # NeoVim
     - name: download neovim

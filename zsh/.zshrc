@@ -1,17 +1,26 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# xdg
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
 
-# Set name of the theme to load.
-ZSH_THEME="sorin"
+# zplugin
+declare -A ZPLGM
+ZPLGM[HOME_DIR]=${HOME}/.local/src/zplugin
+ZPLGM[BIN_DIR]=${ZPLGM[HOME_DIR]}/bin
+ZPLGM[PLUGINS_DIR]=${ZPLGM[HOME_DIR]}/plugins
+ZPLGM[COMPLETIONS_DIR]=${ZPLGM[HOME_DIR]}/completions
+ZPLGM[SNIPPETS_DIR]=${ZPLGM[HOME_DIR]}/snippets
+ZPLGM[SERVICES_DIR]=${ZPLGM[HOME_DIR]}/services
 
-# Enable plugins.
-plugins=(zsh-syntax-highlighting)
+source ${ZPLGM[BIN_DIR]}/zplugin.zsh
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-# User configuration
+# completion
+autoload -Uz compinit
+compinit
 
-source $ZSH/oh-my-zsh.sh
-fpath=(~/.zsh/completion $fpath)
-
+# PATH
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # npm
