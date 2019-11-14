@@ -11,7 +11,7 @@ steps:
 - script: sudo ./install-ansible.sh
 
 # ansible
-- task: Ansible@0.0.5
+- task: Ansible@0
   displayName: Run playbook
   inputs: {
     ansibleInterface: agentMachine,
