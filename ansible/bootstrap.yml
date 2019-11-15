@@ -12,143 +12,143 @@
     apt:
       force_apt_get: yes
 
-  post_tasks:
-
-    - name: set XDG paths
-      lineinfile:
-        path: "{{ home }}/.profile"
-        line: "{{ item }}"
-      with_items:
-        - 'export XDG_CACHE_HOME="$HOME/.cache"'
-        - 'export XDG_CONFIG_HOME="$HOME/.config"'
-        - 'export XDG_DATA_HOME="$HOME/.local/share"'
-
-    - name: create directories
-      file:
-        path: "{{ item }}"
-        state: directory
-      with_items:
-        - "{{ local_bin }}"
-        - "{{ local_src }}"
-        - "{{ xdg_config_home }}"
-
-    # symlink dotfiles
-    - name: symlink git config
-      file:
-        src: "{{ cwd }}/git/.gitconfig"
-        dest: "{{ home }}/.gitconfig"
-        state: link
-      tags:
-        - dotfiles
-
-    - name: symlink tmux config
-      file:
-        src: "{{ cwd }}/tmux/.tmux.conf"
-        dest: "{{ home }}/.tmux.conf"
-        state: link
-      tags:
-        - dotfiles
-
-    - name: symlink vim config
-      file:
-        src: "{{ cwd }}/vim/.vimrc"
-        dest: "{{ home }}/.vimrc"
-        state: link
-      tags:
-        - dotfiles
-
-    - name: neovim config directory
-      file:
-        path: "{{ xdg_config_home }}/nvim"
-        state: directory
-      tags:
-        - dotfiles
-    - name: symlink neovim config
-      file:
-        src: "{{ cwd }}/neovim/init.vim"
-        dest: "{{ xdg_config_home }}/nvim/init.vim"
-        state: link
-      tags:
-        - dotfiles
-
-    - name: symlink zsh config
-      file:
-        src: "{{ cwd }}/zsh/.zshrc"
-        dest: "{{ home }}/.zshrc"
-        state: link
-      tags:
-        - dotfiles
-
-    # Z shell
-    - name: install zsh
-      apt:
-        name: zsh
-        state: present
-      become: yes
-
-    - name: get zsh path
-      shell: which zsh
-      register: zsh_path
-      changed_when: no
-
-    - name: make zsh default shell
-      user:
-        name: "{{ username }}"
-        shell: "{{ zsh_path.stdout }}"
-      become: yes
-
-    - name: download zplugin
-      git:
-        repo: https://github.com/zdharma/zplugin.git
-        dest: "{{ local_src }}/zplugin/bin"
-
-    # NeoVim
-    - name: download neovim
-      get_url:
-        url: https://github.com/neovim/neovim/releases/download/v0.3.3/nvim.appimage
-        dest: "{{ local_bin }}/nvim"
-
-    - name: make neovim executable
-      file:
-        dest: "{{ local_bin }}/nvim"
-        mode: u+x
-
-    - name: install pip
-      apt:
-        name: "{{packages }}"
-      vars:
-        packages:
-        - python-setuptools
-        - python3-setuptools
-        - python-pip
-        - python3-pip
-      become: yes
-
-    - name: install pynvim for python 2
-      pip:
-        name: pynvim
-        executable: pip
-        extra_args: --user
-
-    - name: install pynvim for python 3
-      pip:
-        name: pynvim
-        executable: pip3
-        extra_args: --user
-
-    # vim-plug
-    - name: ensure neovim autoload directory exists
-      file:
-        path: "{{ home }}/.local/share/nvim/site/autoload"
-        state: directory
-
-    - name: download vim-plug
-      get_url:
-        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: "{{ home }}/.local/share/nvim/site/autoload/plug.vim"
-
-        #    - name: run PlugInstall
-        #      shell: ./nvim -E +':silent! PlugInstall' +qa
-        #      args:
-        #        chdir: "{{ local_bin }}"
-
+      #  post_tasks:
+      #
+      #    - name: set XDG paths
+      #      lineinfile:
+      #        path: "{{ home }}/.profile"
+      #        line: "{{ item }}"
+      #      with_items:
+      #        - 'export XDG_CACHE_HOME="$HOME/.cache"'
+      #        - 'export XDG_CONFIG_HOME="$HOME/.config"'
+      #        - 'export XDG_DATA_HOME="$HOME/.local/share"'
+      #
+      #    - name: create directories
+      #      file:
+      #        path: "{{ item }}"
+      #        state: directory
+      #      with_items:
+      #        - "{{ local_bin }}"
+      #        - "{{ local_src }}"
+      #        - "{{ xdg_config_home }}"
+      #
+      #    # symlink dotfiles
+      #    - name: symlink git config
+      #      file:
+      #        src: "{{ cwd }}/git/.gitconfig"
+      #        dest: "{{ home }}/.gitconfig"
+      #        state: link
+      #      tags:
+      #        - dotfiles
+      #
+      #    - name: symlink tmux config
+      #      file:
+      #        src: "{{ cwd }}/tmux/.tmux.conf"
+      #        dest: "{{ home }}/.tmux.conf"
+      #        state: link
+      #      tags:
+      #        - dotfiles
+      #
+      #    - name: symlink vim config
+      #      file:
+      #        src: "{{ cwd }}/vim/.vimrc"
+      #        dest: "{{ home }}/.vimrc"
+      #        state: link
+      #      tags:
+      #        - dotfiles
+      #
+      #    - name: neovim config directory
+      #      file:
+      #        path: "{{ xdg_config_home }}/nvim"
+      #        state: directory
+      #      tags:
+      #        - dotfiles
+      #    - name: symlink neovim config
+      #      file:
+      #        src: "{{ cwd }}/neovim/init.vim"
+      #        dest: "{{ xdg_config_home }}/nvim/init.vim"
+      #        state: link
+      #      tags:
+      #        - dotfiles
+      #
+      #    - name: symlink zsh config
+      #      file:
+      #        src: "{{ cwd }}/zsh/.zshrc"
+      #        dest: "{{ home }}/.zshrc"
+      #        state: link
+      #      tags:
+      #        - dotfiles
+      #
+      #    # Z shell
+      #    - name: install zsh
+      #      apt:
+      #        name: zsh
+      #        state: present
+      #      become: yes
+      #
+      #    - name: get zsh path
+      #      shell: which zsh
+      #      register: zsh_path
+      #      changed_when: no
+      #
+      #    - name: make zsh default shell
+      #      user:
+      #        name: "{{ username }}"
+      #        shell: "{{ zsh_path.stdout }}"
+      #      become: yes
+      #
+      #    - name: download zplugin
+      #      git:
+      #        repo: https://github.com/zdharma/zplugin.git
+      #        dest: "{{ local_src }}/zplugin/bin"
+      #
+      #    # NeoVim
+      #    - name: download neovim
+      #      get_url:
+      #        url: https://github.com/neovim/neovim/releases/download/v0.3.3/nvim.appimage
+      #        dest: "{{ local_bin }}/nvim"
+      #
+      #    - name: make neovim executable
+      #      file:
+      #        dest: "{{ local_bin }}/nvim"
+      #        mode: u+x
+      #
+      #    - name: install pip
+      #      apt:
+      #        name: "{{packages }}"
+      #      vars:
+      #        packages:
+      #        - python-setuptools
+      #        - python3-setuptools
+      #        - python-pip
+      #        - python3-pip
+      #      become: yes
+      #
+      #    - name: install pynvim for python 2
+      #      pip:
+      #        name: pynvim
+      #        executable: pip
+      #        extra_args: --user
+      #
+      #    - name: install pynvim for python 3
+      #      pip:
+      #        name: pynvim
+      #        executable: pip3
+      #        extra_args: --user
+      #
+      #    # vim-plug
+      #    - name: ensure neovim autoload directory exists
+      #      file:
+      #        path: "{{ home }}/.local/share/nvim/site/autoload"
+      #        state: directory
+      #
+      #    - name: download vim-plug
+      #      get_url:
+      #        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      #        dest: "{{ home }}/.local/share/nvim/site/autoload/plug.vim"
+      #
+      #        #    - name: run PlugInstall
+      #        #      shell: ./nvim -E +':silent! PlugInstall' +qa
+      #        #      args:
+      #        #        chdir: "{{ local_bin }}"
+      #
